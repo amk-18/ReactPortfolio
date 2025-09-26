@@ -25,6 +25,8 @@ const Header = () => {
     { name: 'Projects', href: '#projects' },
     { name: 'Process', href: '#process' },
     { name: 'Testimonials', href: '#testimonials' },
+    // In your Header component nav items array, add:
+    //{ name: 'Services', href: '#services' },
     { name: 'Contact', href: '#contact' }
   ];
 

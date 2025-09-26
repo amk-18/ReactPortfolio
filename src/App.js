@@ -12,6 +12,7 @@ import Resume from './components/Resume/Resume';
 import Projects from './components/Projects/Projects';
 import Process from './components/Process/Process';
 import Testimonials from './components/Testimonials/Testimonials';
+//import Services from './components/Services/Services';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
@@ -36,6 +37,7 @@ function App() {
       <Projects />
       <Process />
       <Testimonials />
+      {/* <Services /> */}
       <Contact />
       <Footer />
     </div>

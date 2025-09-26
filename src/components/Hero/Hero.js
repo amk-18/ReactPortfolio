@@ -102,7 +102,7 @@ const Hero = () => {
               <motion.a 
                 href="#projects" 
                 className="btn btn-primary"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -115,8 +115,8 @@ const Hero = () => {
               
               <motion.a 
                 href="#contact" 
-                className="btn btn-outline"
-                whileHover={{ scale: 1.05 }}
+                className="btn btn-accent"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -126,6 +126,27 @@ const Hero = () => {
                 <i className="bx bx-envelope"></i>
                 Contact Me
               </motion.a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div 
+              className="hero-social"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <a href="https://github.com/amk-18/" target="_blank" rel="noopener noreferrer">
+                <i className="bx bxl-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ambika-prasad-parida-7b07501ba/" target="_blank" rel="noopener noreferrer">
+                <i className="bx bxl-linkedin"></i>
+              </a>
+              <a href="https://wa.me/917327838578" target="_blank" rel="noopener noreferrer">
+                <i className="bx bxl-whatsapp"></i>
+              </a>
+              <a href="https://www.hackerrank.com/ambikaparida08" target="_blank" rel="noopener noreferrer">
+                <i className="bx bx-code-alt"></i>
+              </a>
             </motion.div>
           </motion.div>
 
