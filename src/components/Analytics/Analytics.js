@@ -1,45 +1,41 @@
 // src/components/Analytics/Analytics.js
 import { useEffect } from 'react';
 
-const GA_MEASUREMENT_ID = 'G-YB1MTVFQW8'; // Replace with your actual ID
+const GA_MEASUREMENT_ID = 'G-YB1MTVFQW8'; // Your actual ID
 
 export const useAnalytics = () => {
   useEffect(() => {
-    // Check if gtag is available and user consented to cookies
-    const consent = localStorage.getItem('cookieConsent');
-    
-    const trackPageView = () => {
-      if (typeof window.gtag !== 'undefined' && consent === 'true') {
+    const initAnalytics = () => {
+      const consent = localStorage.getItem('cookieConsent');
+      
+      if (window.gtag && consent === 'true') {
+        console.log('✅ Analytics: Tracking enabled for', GA_MEASUREMENT_ID);
+        
+        // Send pageview
         window.gtag('config', GA_MEASUREMENT_ID, {
           page_title: document.title,
           page_location: window.location.href,
+          page_path: window.location.pathname
         });
+        
+        // Send custom event
+        window.gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+          send_to: GA_MEASUREMENT_ID
+        });
+      } else {
+        console.log('⏳ Analytics: Waiting for consent or gtag not loaded');
       }
     };
 
-    // Track initial page view
-    trackPageView();
-
-    // Track subsequent page views using window.history
-    const originalPushState = window.history.pushState;
-    if (originalPushState) {
-      window.history.pushState = function (...args) {
-        originalPushState.apply(this, args);
-        setTimeout(trackPageView, 100);
-      };
+    // Initialize after load
+    if (document.readyState === 'complete') {
+      setTimeout(initAnalytics, 1000);
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(initAnalytics, 1000);
+      });
     }
-
-    const handlePopState = () => {
-      setTimeout(trackPageView, 100);
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-      if (originalPushState) {
-        window.history.pushState = originalPushState;
-      }
-    };
   }, []);
 };
