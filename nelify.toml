@@ -1,0 +1,28 @@
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NODE_ENV = "production"
+
+# Function configurations
+[functions]
+  # Set the Node.js version for functions
+  node_bundler = "esbuild"
+
+# Optional: Redirects (useful for SPAs)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Header settings
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
