@@ -10,12 +10,12 @@ export const useAnalytics = () => {
       
       if (consent === 'true') {
         try {
-          // Get additional browser/device info
+          // Fix: Access screen through window object
           const screenInfo = {
-            width: screen.width,
-            height: screen.height,
-            colorDepth: screen.colorDepth,
-            pixelDepth: screen.pixelDepth
+            width: window.screen.width,           // Fixed
+            height: window.screen.height,         // Fixed
+            colorDepth: window.screen.colorDepth, // Fixed
+            pixelDepth: window.screen.pixelDepth  // Fixed
           };
 
           const visitorData = {
@@ -30,7 +30,7 @@ export const useAnalytics = () => {
             online: navigator.onLine,
             platform: navigator.platform,
             // Add Google Analytics data if available
-            gaClientId: getGAClientId()
+            gaClientId: await getGAClientId() // Added await here since getGAClientId returns a promise
           };
 
           // Send to Netlify function
@@ -51,12 +51,19 @@ export const useAnalytics = () => {
 
     // Get Google Analytics Client ID
     const getGAClientId = () => {
-      if (window.gtag && window.gtag.get) {
+      if (window.gtag && typeof window.gtag === 'function') {
         return new Promise((resolve) => {
-          window.gtag('get', GA_MEASUREMENT_ID, 'client_id', resolve);
+          try {
+            window.gtag('get', GA_MEASUREMENT_ID, 'client_id', (clientId) => {
+              resolve(clientId);
+            });
+          } catch (error) {
+            console.log('Error getting GA client ID:', error);
+            resolve(null);
+          }
         });
       }
-      return null;
+      return Promise.resolve(null);
     };
 
     // Track when user accepts cookies

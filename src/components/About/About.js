@@ -51,7 +51,7 @@ const About = () => {
                 <ul>
                   <li><strong>Location:</strong> Bangalore, Karnataka</li>
                   <li><strong>Current Company:</strong> Ikontel Solutions Pvt. Ltd.</li>
-                  <li><strong>Experience:</strong> 2+ Years</li>
+                  <li><strong>Experience:</strong> 3 + Years</li>
                   <li><strong>Specialization:</strong> Full Stack Development</li>
                 </ul>
               </div>

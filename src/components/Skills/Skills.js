@@ -12,7 +12,8 @@ const Skills = () => {
       skills: [
         { name: "Java", percentage: 95 },
         { name: "JavaScript", percentage: 90 },
-        { name: "Python", percentage: 85 }
+        { name: "Python", percentage: 85 },
+        { name: "PHP", percentage: 80 }
       ]
     },
     {
@@ -20,7 +21,6 @@ const Skills = () => {
       icon: "⚙️",
       color: "#10B981",
       skills: [
-        { name: "Node.js", percentage: 90 },
         { name: "Spring Boot", percentage: 88 },
         { name: "RESTful APIs", percentage: 95 },
         { name: "JUnit", percentage: 85 }
@@ -31,9 +31,9 @@ const Skills = () => {
       icon: "🗄️",
       color: "#8B5CF6",
       skills: [
-        { name: "Relational DBs (SQL)", percentage: 90 },
-        { name: "MongoDB", percentage: 85 },
-        { name: "Cosmos DB", percentage: 80 }
+        { name: "MySQL", percentage: 90 },
+        { name: "PostgreSQL", percentage: 88 },
+        { name: "MongoDB", percentage: 85 }
       ]
     },
     {
@@ -41,6 +41,7 @@ const Skills = () => {
       icon: "☁️",
       color: "#F59E0B",
       skills: [
+        { name: "Docker", percentage: 85 },
         { name: "Kubernetes", percentage: 85 },
         { name: "AWS", percentage: 82 },
         { name: "EC2", percentage: 88 },
@@ -129,7 +130,7 @@ const Skills = () => {
             <span className="summary-label">Skill Categories</span>
           </div>
           <div className="summary-item">
-            <span className="summary-number">18</span>
+            <span className="summary-number">19</span>
             <span className="summary-label">Technologies</span>
           </div>
           <div className="summary-item">
