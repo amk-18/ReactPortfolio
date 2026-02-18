@@ -137,7 +137,7 @@ const VisitorList = ({ visitors }) => (
             <span>🌐 {visitor.ip}</span>
           </div>
           <div style={{ fontSize: '12px', color: '#999', marginTop: '4px' }}>
-            📄 {visitor.page} • 🔗 {visitor.referrer}
+            📄 {visitor.page} • 🔗 {visitor.referrer || 'Direct'}
           </div>
         </div>
 
@@ -151,7 +151,7 @@ const VisitorList = ({ visitors }) => (
   </div>
 );
 
-// Main Viewer Component with new shortcut
+// Main Viewer Component
 export const VisitorViewer = () => {
   const [visitors, setVisitors] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -185,17 +185,17 @@ export const VisitorViewer = () => {
     }
   };
 
-  // NEW SHORTCUT: Ctrl + Shift + A (A for Analytics)
-  // This won't conflict with Chrome's shortcuts
+  // SHORTCUT: Ctrl + Shift + Alt + R (R for Reports/Analytics)
   useEffect(() => {
     const handleKeyPress = (e) => {
-      // Using Ctrl + Shift + A instead of V
-      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.key === 'R') {
         e.preventDefault(); // Prevent any browser actions
+        e.stopPropagation(); // Stop event bubbling
         console.log('📊 Opening analytics viewer');
         setShowViewer(prev => !prev);
       }
     };
+    
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
@@ -233,33 +233,39 @@ export const VisitorViewer = () => {
           borderRadius: '12px',
           marginLeft: '4px'
         }}>
-          Ctrl+Shift+A
+          Ctrl+Shift+Alt+R
         </span>
       </button>
 
       {/* Modal Popup */}
       {showViewer && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10000
-        }} onClick={() => setShowViewer(false)}>
-          <div style={{
-            background: 'white',
-            borderRadius: '12px',
-            width: '90%',
-            maxWidth: '900px',
-            maxHeight: '90vh',
-            overflow: 'auto',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
-          }} onClick={e => e.stopPropagation()}>
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10000
+          }} 
+          onClick={() => setShowViewer(false)}
+        >
+          <div 
+            style={{
+              background: 'white',
+              borderRadius: '12px',
+              width: '90%',
+              maxWidth: '900px',
+              maxHeight: '90vh',
+              overflow: 'auto',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+            }} 
+            onClick={e => e.stopPropagation()}
+          >
             {/* Header */}
             <div style={{
               padding: '16px 20px',
@@ -267,7 +273,9 @@ export const VisitorViewer = () => {
               color: 'white',
               display: 'flex',
               justifyContent: 'space-between',
-              alignItems: 'center'
+              alignItems: 'center',
+              position: 'sticky',
+              top: 0
             }}>
               <h3 style={{ margin: 0, fontSize: '18px' }}>
                 📊 Visitor Analytics - Yesterday vs Day Before
@@ -285,8 +293,11 @@ export const VisitorViewer = () => {
                   borderRadius: '15px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  transition: 'background 0.2s'
                 }}
+                onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.3)'}
+                onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.2)'}
               >
                 ✕
               </button>
@@ -321,6 +332,11 @@ export const VisitorViewer = () => {
                         borderRadius: '6px',
                         fontSize: '14px'
                       }}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          fetchVisitors();
+                        }
+                      }}
                     />
                     <button
                       onClick={fetchVisitors}
@@ -333,7 +349,8 @@ export const VisitorViewer = () => {
                         borderRadius: '6px',
                         cursor: 'pointer',
                         fontSize: '14px',
-                        opacity: loading ? 0.7 : 1
+                        opacity: loading ? 0.7 : 1,
+                        transition: 'opacity 0.2s'
                       }}
                     >
                       {loading ? 'Loading...' : 'View Visitors'}
@@ -457,8 +474,11 @@ export const VisitorViewer = () => {
                         border: 'none',
                         borderRadius: '4px',
                         cursor: 'pointer',
-                        fontSize: '13px'
+                        fontSize: '13px',
+                        transition: 'background 0.2s'
                       }}
+                      onMouseEnter={(e) => e.target.style.background = '#e0e0e0'}
+                      onMouseLeave={(e) => e.target.style.background = '#f0f0f0'}
                     >
                       ← Back to Key Input
                     </button>
@@ -475,9 +495,11 @@ export const VisitorViewer = () => {
               fontSize: '12px',
               color: '#666',
               display: 'flex',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              position: 'sticky',
+              bottom: 0
             }}>
-              <span>Press <strong>Ctrl+Shift+A</strong> to toggle</span>
+              <span>Press <strong>Ctrl+Shift+Alt+R</strong> to toggle</span>
               <span>📍 Shows yesterday vs day before</span>
             </div>
           </div>
