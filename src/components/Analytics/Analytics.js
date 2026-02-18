@@ -157,6 +157,7 @@ export const VisitorViewer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showViewer, setShowViewer] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [secretKey, setSecretKey] = useState('');
 
   const fetchVisitors = async () => {
@@ -169,20 +170,36 @@ export const VisitorViewer = () => {
     setError('');
     
     try {
+      console.log('🔍 Fetching visitors with key:', secretKey);
+      
       const response = await fetch(`/.netlify/functions/get-visitors?key=${secretKey}`);
+      console.log('📡 Response status:', response.status);
+      
       const data = await response.json();
+      console.log('📦 Response data:', data);
       
       if (data.success) {
+        console.log('✅ Visitors data received:', data);
         setVisitors(data);
+        setShowLogin(false);
       } else {
+        console.log('❌ Failed response:', data);
         setError(data.error || 'Failed to fetch visitors');
       }
     } catch (err) {
-      setError('Error connecting to server');
-      console.error(err);
+      console.error('🔥 Error details:', err);
+      setError('Error connecting to server: ' + err.message);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleClose = () => {
+    setShowViewer(false);
+    setVisitors(null);
+    setShowLogin(true);
+    setSecretKey('');
+    setError('');
   };
 
   // SHORTCUT: Ctrl + Shift + Alt + R
@@ -192,7 +209,9 @@ export const VisitorViewer = () => {
         e.preventDefault();
         e.stopPropagation();
         console.log('📊 Opening analytics viewer');
-        setShowViewer(prev => !prev);
+        setShowViewer(true);
+        setShowLogin(true);
+        setVisitors(null);
       }
     };
     
@@ -205,6 +224,8 @@ export const VisitorViewer = () => {
     const handleOpenAnalytics = () => {
       console.log('📊 Opening analytics from header button');
       setShowViewer(true);
+      setShowLogin(true);
+      setVisitors(null);
     };
     
     window.addEventListener('openAnalytics', handleOpenAnalytics);
@@ -218,7 +239,11 @@ export const VisitorViewer = () => {
     <>
       {/* Floating Button */}
       <button
-        onClick={() => setShowViewer(true)}
+        onClick={() => {
+          setShowViewer(true);
+          setShowLogin(true);
+          setVisitors(null);
+        }}
         style={{
           position: 'fixed',
           bottom: '20px',
@@ -266,7 +291,7 @@ export const VisitorViewer = () => {
             justifyContent: 'center',
             zIndex: 10000
           }} 
-          onClick={() => setShowViewer(false)}
+          onClick={handleClose}
         >
           <div 
             style={{
@@ -295,7 +320,7 @@ export const VisitorViewer = () => {
                 📊 Visitor Analytics - Yesterday vs Day Before
               </h3>
               <button 
-                onClick={() => setShowViewer(false)}
+                onClick={handleClose}
                 style={{
                   background: 'rgba(255,255,255,0.2)',
                   border: 'none',
@@ -322,8 +347,8 @@ export const VisitorViewer = () => {
               padding: '20px',
               backgroundColor: '#f8f9fa'
             }}>
-              {/* Secret Key Input */}
-              {!visitors && (
+              {/* Show Login if showLogin is true */}
+              {showLogin && (
                 <div style={{
                   background: 'white',
                   padding: '20px',
@@ -351,6 +376,7 @@ export const VisitorViewer = () => {
                           fetchVisitors();
                         }
                       }}
+                      autoFocus
                     />
                     <button
                       onClick={fetchVisitors}
@@ -385,8 +411,8 @@ export const VisitorViewer = () => {
                 </div>
               )}
 
-              {/* Visitor Display */}
-              {visitors && (
+              {/* Visitor Display - only shown after successful login */}
+              {!showLogin && visitors && (
                 <>
                   {/* Summary Cards */}
                   <div style={{
@@ -477,26 +503,6 @@ export const VisitorViewer = () => {
                       No visitors in the last 2 days
                     </div>
                   )}
-
-                  {/* Refresh button */}
-                  <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                    <button
-                      onClick={() => setVisitors(null)}
-                      style={{
-                        padding: '8px 16px',
-                        background: '#f0f0f0',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        fontSize: '13px',
-                        transition: 'background 0.2s'
-                      }}
-                      onMouseEnter={(e) => e.target.style.background = '#e0e0e0'}
-                      onMouseLeave={(e) => e.target.style.background = '#f0f0f0'}
-                    >
-                      ← Back to Key Input
-                    </button>
-                  </div>
                 </>
               )}
             </div>
@@ -513,7 +519,7 @@ export const VisitorViewer = () => {
               position: 'sticky',
               bottom: 0
             }}>
-              <span>Press <strong>Ctrl+Shift+Alt+R</strong> to toggle</span>
+              <span>Press <strong>Ctrl+Shift+Alt+R</strong> to open</span>
               <span>📍 Shows yesterday vs day before</span>
             </div>
           </div>

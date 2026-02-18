@@ -20,15 +20,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Check if already logged in
+  // Check session storage (cleared when browser closes)
   useEffect(() => {
-    const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+    const adminLoggedIn = sessionStorage.getItem('adminLoggedIn') === 'true';
     setIsAdmin(adminLoggedIn);
   }, []);
 
   const handleAdminLogin = async () => {
     try {
-      // Test the key by trying to fetch visitors
       const response = await fetch(`/.netlify/functions/get-visitors?key=${adminKey}`);
       const data = await response.json();
       
@@ -36,8 +35,8 @@ const Header = () => {
         setIsAdmin(true);
         setShowAdminLogin(false);
         setLoginError('');
-        localStorage.setItem('adminLoggedIn', 'true');
-        localStorage.setItem('adminKey', adminKey);
+        // Use sessionStorage - clears when browser closes
+        sessionStorage.setItem('adminLoggedIn', 'true');
         
         // Open analytics viewer after successful login
         window.dispatchEvent(new CustomEvent('openAnalytics'));
