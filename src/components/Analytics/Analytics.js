@@ -185,12 +185,12 @@ export const VisitorViewer = () => {
     }
   };
 
-  // SHORTCUT: Ctrl + Shift + Alt + R (R for Reports/Analytics)
+  // SHORTCUT: Ctrl + Shift + Alt + R
   useEffect(() => {
     const handleKeyPress = (e) => {
-      if (e.ctrlKey && e.shiftKey && e.altKey && e.key === 'R') {
-        e.preventDefault(); // Prevent any browser actions
-        e.stopPropagation(); // Stop event bubbling
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.key.toLowerCase() === 'r') {
+        e.preventDefault();
+        e.stopPropagation();
         console.log('📊 Opening analytics viewer');
         setShowViewer(prev => !prev);
       }
@@ -198,6 +198,20 @@ export const VisitorViewer = () => {
     
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
+  // Listen for openAnalytics event from header
+  useEffect(() => {
+    const handleOpenAnalytics = () => {
+      console.log('📊 Opening analytics from header button');
+      setShowViewer(true);
+    };
+    
+    window.addEventListener('openAnalytics', handleOpenAnalytics);
+    
+    return () => {
+      window.removeEventListener('openAnalytics', handleOpenAnalytics);
+    };
   }, []);
 
   return (
