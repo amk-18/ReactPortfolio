@@ -49,12 +49,6 @@ const Header = () => {
     }
   };
 
-  const handleAdminLogout = () => {
-    setIsAdmin(false);
-    localStorage.removeItem('adminLoggedIn');
-    localStorage.removeItem('adminKey');
-  };
-
   const openAnalytics = () => {
     window.dispatchEvent(new CustomEvent('openAnalytics'));
   };
@@ -97,38 +91,40 @@ const Header = () => {
               <a href="#hero">Ambika Prasad</a>
             </motion.div>
 
-            {/* Admin Button - Visible when logged in */}
-            {isAdmin && (
-              <motion.button
-                className="admin-analytics-btn"
-                onClick={openAnalytics}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                title="View Analytics (Ctrl+Shift+Alt+R)"
-              >
-                <span className="admin-icon">📊</span>
-                <span className="admin-text">Analytics</span>
-              </motion.button>
-            )}
+            <div className="header-actions">
+              {/* Admin Button - Visible when logged in */}
+              {isAdmin && (
+                <motion.button
+                  className="admin-analytics-btn"
+                  onClick={openAnalytics}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  title="View Analytics (Ctrl+Shift+Alt+R)"
+                >
+                  <span className="admin-icon">📊</span>
+                  <span className="admin-text">Analytics</span>
+                </motion.button>
+              )}
 
-            {/* Admin Login Button - Visible when not logged in */}
-            {!isAdmin && (
-              <motion.button
-                className="admin-login-btn"
-                onClick={() => setShowAdminLogin(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                title="Admin Login"
-              >
-                <span className="admin-icon">🔐</span>
-              </motion.button>
-            )}
+              {/* Admin Login Button - Visible when not logged in */}
+              {!isAdmin && (
+                <motion.button
+                  className="admin-login-btn"
+                  onClick={() => setShowAdminLogin(true)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  title="Admin Login"
+                >
+                  <span className="admin-icon">🔐</span>
+                </motion.button>
+              )}
+            </div>
 
             <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
               <ul>
