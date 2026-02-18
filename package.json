@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "framer-motion": "^12.23.12",
+    "node-fetch": "^2.7.0",
     "particles.js": "^2.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
