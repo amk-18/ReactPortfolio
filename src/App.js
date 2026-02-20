@@ -4,7 +4,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import { DarkModeProvider } from './context/DarkModeContext';
-import { useAnalytics } from './components/Analytics/Analytics';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -17,13 +16,16 @@ import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import CookieConsent from './components/CookieConsent/CookieConsent';
-import Analytics from './components/Analytics/Analytics';
+
+// IMPORTANT: Remove these imports
+// import { useAnalytics } from './components/Analytics/Analytics';
+// import Analytics from './components/Analytics/Analytics';
 
 import './App.css';
 
 function AppContent() {
-  // Initialize Analytics
-  useAnalytics();
+  // Remove this line
+  // useAnalytics();
   
   // Initialize AOS animations
   useEffect(() => {
@@ -47,7 +49,8 @@ function AppContent() {
       <Contact />
       <Footer />
       <CookieConsent />
-      <Analytics />
+      {/* Remove this line */}
+      {/* <Analytics /> */}
     </div>
   );
 }

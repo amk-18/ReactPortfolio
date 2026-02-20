@@ -195,17 +195,11 @@ const Resume = () => {
             <div className="personal-info-card">
               <div className="profile-header">
                 <div className="profile-avatar">
-                  <img src="/assets/img/ambika1.jpeg" 
-                      alt="Ambika Prasad Parida"
-                        onError={(e) => {
-                            e.target.onerror = null;
-                              e.target.src = 'https://via.placeholder.com/100x100?text=Ambika';
-                        }}
-                  />
+                  <img src="/assets/img/ambika1.jpeg" alt="Ambika Prasad Parida" />
                 </div>
                 <div className="profile-info">
                   <h1>Ambika Prasad Parida</h1>
-                  <p className="profile-title">Senior Backend Developer</p>
+                  <p className="profile-title">Senior Full Stack Developer</p>
                   <div className="profile-badge">3+ Years Experience</div>
                   <div className="profile-contacts">
                     <div className="contact-item">
