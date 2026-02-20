@@ -1,4 +1,6 @@
 /* src/App.css */
+
+/* Light mode variables (default) */
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -12,6 +14,15 @@
   --gray: #94a3b8;
   --white: #ffffff;
   --black: #0f172a;
+  
+  /* Background and text colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #94a3b8;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
   
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
   --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary-light));
@@ -37,6 +48,99 @@
   --font-size-xl: 18px;
   --font-size-xxl: 24px;
   --font-size-hero: 32px;
+}
+
+/* Dark mode variables */
+.dark-mode {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
+  --secondary: #8b5cf6;
+  --accent: #34d399;
+  --dark: #f8fafc;
+  --dark-2: #e2e8f0;
+  --light: #0f172a;
+  --light-2: #1e293b;
+  --gray: #64748b;
+  --white: #1e293b;
+  --black: #f8fafc;
+  
+  /* Background and text colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --gradient-accent: linear-gradient(135deg, #34d399, #60a5fa);
+  --gradient-dark: linear-gradient(135deg, #1e293b, #334155);
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Apply dark mode styles */
+.dark-mode body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark-mode .section-bg {
+  background: var(--bg-secondary);
+}
+
+.dark-mode .card {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode .btn-outline {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.dark-mode .btn-outline:hover {
+  background: var(--primary);
+  color: var(--bg-primary);
+}
+
+.dark-mode .btn-primary {
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+}
+
+.dark-mode .section-title h2 {
+  color: var(--text-primary);
+}
+
+.dark-mode .section-title p {
+  color: var(--text-muted);
+}
+
+/* Smooth transition for theme switching */
+* {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.2s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Custom scrollbar for dark mode */
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
 }
 
 * {
@@ -127,7 +231,7 @@ body {
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
-  min-height: 44px; /* Minimum touch target size */
+  min-height: 44px;
   min-width: 44px;
   white-space: nowrap;
 }
@@ -352,4 +456,29 @@ button:active {
   .scroll-indicator {
     display: none !important;
   }
+}
+
+/* Dark mode specific utility classes */
+.dark-mode .text-primary {
+  color: var(--text-primary);
+}
+
+.dark-mode .text-secondary {
+  color: var(--text-secondary);
+}
+
+.dark-mode .text-muted {
+  color: var(--text-muted);
+}
+
+.dark-mode .bg-primary {
+  background: var(--bg-primary);
+}
+
+.dark-mode .bg-secondary {
+  background: var(--bg-secondary);
+}
+
+.dark-mode .border-custom {
+  border-color: var(--border-color);
 }

@@ -13,10 +13,22 @@
   border-bottom: 1px solid transparent;
 }
 
+/* Dark mode header */
+.dark-mode .header {
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(10px);
+}
+
 .header.scrolled {
   padding: 0.5rem 0;
   border-bottom-color: var(--light-2);
   box-shadow: var(--shadow-sm);
+}
+
+/* Dark mode scrolled header */
+.dark-mode .header.scrolled {
+  border-bottom-color: var(--border-color);
+  box-shadow: var(--shadow-md);
 }
 
 .header-content {
@@ -36,6 +48,13 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   white-space: nowrap;
+}
+
+/* Dark mode logo */
+.dark-mode .logo a {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Header Actions Container */
@@ -63,6 +82,12 @@
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   transition: all 0.3s ease;
   flex-shrink: 0;
+}
+
+/* Dark mode admin buttons */
+.dark-mode .admin-analytics-btn,
+.dark-mode .admin-login-btn {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .admin-login-btn {
@@ -101,16 +126,33 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
+/* Dark mode admin login modal */
+.dark-mode .admin-login-content {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
 .admin-login-content h3 {
   margin: 0 0 0.5rem 0;
   color: #333;
   font-size: 1.3rem;
 }
 
+/* Dark mode modal heading */
+.dark-mode .admin-login-content h3 {
+  color: var(--text-primary);
+}
+
 .admin-login-content p {
   color: #666;
   margin-bottom: 1rem;
   font-size: 0.9rem;
+}
+
+/* Dark mode modal text */
+.dark-mode .admin-login-content p {
+  color: var(--text-muted);
 }
 
 .admin-login-content input {
@@ -124,9 +166,21 @@
   min-height: 44px;
 }
 
+/* Dark mode modal input */
+.dark-mode .admin-login-content input {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
 .admin-login-content input:focus {
   outline: none;
   border-color: #667eea;
+}
+
+/* Dark mode input focus */
+.dark-mode .admin-login-content input:focus {
+  border-color: var(--primary);
 }
 
 .admin-login-error {
@@ -137,6 +191,13 @@
   margin-bottom: 1rem;
   font-size: 0.9rem;
   text-align: center;
+}
+
+/* Dark mode error message */
+.dark-mode .admin-login-error {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+  border: 1px solid #ef4444;
 }
 
 .admin-login-buttons {
@@ -161,9 +222,21 @@
   color: #666;
 }
 
+/* Dark mode cancel button */
+.dark-mode .admin-login-buttons button:first-child {
+  background: var(--bg-primary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
 .admin-login-buttons .login-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+}
+
+/* Dark mode login button */
+.dark-mode .admin-login-buttons .login-btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 .nav {
@@ -178,6 +251,12 @@
   padding: 5rem 1.5rem 2rem;
   z-index: 1001;
   overflow-y: auto;
+}
+
+/* Dark mode navigation menu */
+.dark-mode .nav {
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-color);
 }
 
 .nav-open {
@@ -203,6 +282,12 @@
   border-bottom: 1px solid var(--light-2);
 }
 
+/* Dark mode nav links */
+.dark-mode .nav a {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
 .nav a::after {
   display: none;
 }
@@ -211,6 +296,12 @@
 .nav a.active {
   color: var(--primary);
   padding-left: 0.5rem;
+}
+
+/* Dark mode nav hover */
+.dark-mode .nav a:hover,
+.dark-mode .nav a.active {
+  color: var(--primary-light);
 }
 
 .mobile-nav-toggle {
@@ -233,6 +324,11 @@
   transition: var(--transition);
   transform-origin: center;
   margin: 3px 0;
+}
+
+/* Dark mode mobile toggle */
+.dark-mode .mobile-nav-toggle span {
+  background: var(--text-primary);
 }
 
 .mobile-nav-toggle.active span:nth-child(1) {
@@ -258,6 +354,12 @@
     overflow: visible;
   }
   
+  /* Dark mode desktop nav */
+  .dark-mode .nav {
+    background: transparent;
+    border-left: none;
+  }
+  
   .nav ul {
     flex-direction: row;
     gap: 1.5rem;
@@ -267,6 +369,12 @@
     padding: 0.5rem 0;
     border-bottom: none;
     font-size: 0.95rem;
+  }
+  
+  /* Dark mode desktop nav links */
+  .dark-mode .nav a {
+    color: var(--text-primary);
+    border-bottom: none;
   }
   
   .nav a::after {
@@ -279,6 +387,11 @@
     background: var(--gradient-primary);
     transition: var(--transition);
     display: block;
+  }
+  
+  /* Dark mode nav underline */
+  .dark-mode .nav a::after {
+    background: var(--gradient-primary);
   }
   
   .nav a:hover::after,

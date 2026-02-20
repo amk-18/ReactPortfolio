@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import { DarkModeProvider } from './context/DarkModeContext';
 import { useAnalytics } from './components/Analytics/Analytics';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
@@ -13,15 +14,14 @@ import Resume from './components/Resume/Resume';
 import Projects from './components/Projects/Projects';
 import Process from './components/Process/Process';
 import Testimonials from './components/Testimonials/Testimonials';
-// import Services from './components/Services/Services'; // Commented out as per your code
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import CookieConsent from './components/CookieConsent/CookieConsent'; // Add this
-// import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy'; // Optional: if you want a separate page
+import CookieConsent from './components/CookieConsent/CookieConsent';
+import Analytics from './components/Analytics/Analytics';
 
 import './App.css';
 
-function App() {
+function AppContent() {
   // Initialize Analytics
   useAnalytics();
   
@@ -44,11 +44,19 @@ function App() {
       <Projects />
       <Process />
       <Testimonials />
-      {/* <Services /> */}
       <Contact />
       <Footer />
-      <CookieConsent /> {/* Add Cookie Consent Banner */}
+      <CookieConsent />
+      <Analytics />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <DarkModeProvider>
+      <AppContent />
+    </DarkModeProvider>
   );
 }
 

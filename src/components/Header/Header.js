@@ -1,6 +1,8 @@
-// src/components/Header/Header.js
+// src/components/Header/Header.js (Updated with Dark Mode Toggle)
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
+import { useDarkMode } from '../../context/DarkModeContext';
 import './Header.css';
 
 const Header = () => {
@@ -10,6 +12,7 @@ const Header = () => {
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [adminKey, setAdminKey] = useState('');
   const [loginError, setLoginError] = useState('');
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,10 +38,7 @@ const Header = () => {
         setIsAdmin(true);
         setShowAdminLogin(false);
         setLoginError('');
-        // Use sessionStorage - clears when browser closes
         sessionStorage.setItem('adminLoggedIn', 'true');
-        
-        // Open analytics viewer after successful login
         window.dispatchEvent(new CustomEvent('openAnalytics'));
       } else {
         setLoginError('Invalid admin key');
@@ -75,7 +75,7 @@ const Header = () => {
   return (
     <>
       <motion.header 
-        className={`header ${isScrolled ? 'scrolled' : ''}`}
+        className={`header ${isScrolled ? 'scrolled' : ''} ${isDarkMode ? 'dark-header' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -91,6 +91,9 @@ const Header = () => {
             </motion.div>
 
             <div className="header-actions">
+              {/* Dark Mode Toggle */}
+              <DarkModeToggle />
+
               {/* Admin Button - Visible when logged in */}
               {isAdmin && (
                 <motion.button

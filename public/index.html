@@ -2,18 +2,231 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    
+    <!-- Primary Meta Tags -->
+    <link rel="icon" href="%PUBLIC_URL%/assets/img/ambika1.jpeg" />
     <meta name="theme-color" content="#2563eb" />
-    <meta name="description" content="Ambika Prasad Parida - Full Stack Developer Portfolio" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta 
+      name="description" 
+      content="Ambika Prasad Parida - Full Stack Developer specializing in Java, Spring Boot, Microservices, and AWS. 3+ years of experience in building scalable applications." 
+    />
+    
+    <!-- Viewport Meta Tag - CRITICAL for mobile responsiveness -->
+    <meta 
+      name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" 
+    />
+    
+    <!-- Mobile App Capabilities -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Ambika Prasad" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ambika Prasad Parida | Full Stack Developer" />
+    <meta 
+      property="og:description" 
+      content="Full Stack Developer specializing in Java, Spring Boot, Microservices, and AWS. 3+ years of experience." 
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/assets/img/ambika1.jpeg" />
+    <meta property="og:url" content="https://portfolio.parida.in" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ambika Prasad Parida | Full Stack Developer" />
+    <meta 
+      name="twitter:description" 
+      content="Full Stack Developer specializing in Java, Spring Boot, Microservices, and AWS." 
+    />
+    <meta name="twitter:image" content="%PUBLIC_URL%/assets/img/ambika1.jpeg" />
+    
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Analytics - Optimized -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YB1MTVFQW8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Consent-based tracking
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied'
+      });
+      
+      gtag('config', 'G-YB1MTVFQW8', {
+        debug_mode: window.location.hostname === 'localhost',
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_domain: 'parida.in',
+        cookie_expires: 63072000 // 2 years
+      });
+    </script>
+    
+    <!-- External Stylesheets - Deferred Loading -->
+    <link 
+      rel="stylesheet" 
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
+      media="print" 
+      onload="this.media='all'"
+    />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" 
+      media="print" 
+      onload="this.media='all'"
+    />
+    
+    <!-- Fallback for no JavaScript -->
+    <noscript>
+      <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+    
+    <!-- iOS Splash Screens -->
+    <link 
+      rel="apple-touch-startup-image" 
+      href="%PUBLIC_URL%/assets/img/splash/iphone12-splash.png" 
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link 
+      rel="apple-touch-startup-image" 
+      href="%PUBLIC_URL%/assets/img/splash/iphone-se-splash.png" 
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    
+    <!-- Touch Icons for iOS/Android -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/img/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/assets/img/icons/favicon-16x16.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Ambika Prasad Parida - Full Stack Developer</title>
+    
+    <!-- Page Title -->
+    <title>Ambika Prasad Parida | Full Stack Developer</title>
+    
+    <!-- Inline Critical CSS for Above-the-Fold Content -->
+    <style>
+      /* Critical CSS for initial render */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        line-height: 1.6;
+        color: #1e293b;
+        background: #f8fafc;
+        overflow-x: hidden;
+      }
+      
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        width: 100%;
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 0.75rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 0.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #fee; color: #c00;">
+        ⚠️ JavaScript is disabled. Please enable JavaScript for the best experience.
+      </div>
+    </noscript>
+    
     <div id="root"></div>
+    
+    <!-- Performance Monitoring -->
+    <script>
+      // Report Core Web Vitals
+      if ('performance' in window && 'getEntriesByType' in performance) {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+              console.log('📊 Performance Metrics:', {
+                'TTFB': perfData.responseStart - perfData.requestStart + 'ms',
+                'DOM Load': perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart + 'ms',
+                'Page Load': perfData.loadEventEnd - perfData.loadEventStart + 'ms'
+              });
+            }
+          }, 0);
+        });
+      }
+      
+      // Register Service Worker for offline capability
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js').then(
+            function(registration) {
+              console.log('✅ Service Worker registered:', registration.scope);
+            },
+            function(err) {
+              console.log('❌ Service Worker registration failed:', err);
+            }
+          );
+        });
+      }
+      
+      // Handle offline/online events
+      window.addEventListener('offline', function() {
+        document.body.classList.add('offline');
+        console.log('📡 App is offline');
+      });
+      
+      window.addEventListener('online', function() {
+        document.body.classList.remove('offline');
+        console.log('📡 App is online');
+      });
+    </script>
+    
+    <!-- Preload critical assets -->
+    <link 
+      rel="preload" 
+      href="%PUBLIC_URL%/assets/img/ambika1.jpeg" 
+      as="image" 
+      type="image/jpeg"
+      media="(min-width: 769px)"
+    />
+    <link 
+      rel="preload" 
+      href="%PUBLIC_URL%/assets/img/ambika2.jpeg" 
+      as="image" 
+      type="image/jpeg"
+      media="(max-width: 768px)"
+    />
   </body>
 </html>

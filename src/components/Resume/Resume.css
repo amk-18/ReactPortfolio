@@ -1,6 +1,13 @@
 /* src/components/Resume/Resume.css */
+
+/* Light mode styles (your existing) */
 .resume {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* Dark mode resume section */
+.dark-mode .resume {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 .resume-layout {
@@ -9,27 +16,85 @@
   gap: 2rem;
 }
 
-.resume-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Force profile image to show - add this at the beginning of the file */
+.profile-avatar {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  margin: 0 auto 1.5rem !important;
+  border: 4px solid var(--primary) !important;
+  box-shadow: var(--shadow-md) !important;
+  position: relative !important;
+  display: block !important;
+  background-color: #f0f0f0; /* Fallback background */
 }
 
-.resume-main {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.profile-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
-/* Personal Info Card */
+/* Ensure parent containers don't hide it */
 .personal-info-card {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.profile-header {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Remove any opacity or transforms that might hide it */
+.profile-avatar,
+.profile-avatar img {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Dark mode layout */
+.dark-mode .resume-layout {
+  background: transparent;
+}
+
+/* Cards - Light mode */
+.personal-info-card,
+.competencies-card,
+.achievements-card,
+.summary-card,
+.experience-card,
+.projects-card,
+.education-card,
+.languages-card {
   background: var(--white);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
 }
 
+/* Cards - Dark mode */
+.dark-mode .personal-info-card,
+.dark-mode .competencies-card,
+.dark-mode .achievements-card,
+.dark-mode .summary-card,
+.dark-mode .experience-card,
+.dark-mode .projects-card,
+.dark-mode .education-card,
+.dark-mode .languages-card {
+  background: var(--card-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+}
+
+/* Personal Info Card */
 .profile-header {
   margin-bottom: 1.5rem;
 }
@@ -43,12 +108,6 @@
   border: 4px solid var(--primary);
 }
 
-.profile-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .profile-info h1 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -56,10 +115,19 @@
   color: var(--dark);
 }
 
+/* Dark mode profile name */
+.dark-mode .profile-info h1 {
+  color: var(--text-primary);
+}
+
 .profile-title {
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 1rem;
+}
+
+.profile-badge {
+  /* Add your badge styles */
 }
 
 .contact-item {
@@ -70,6 +138,11 @@
   margin-bottom: 0.5rem;
   color: var(--gray);
   font-size: 0.9rem;
+}
+
+/* Dark mode contact items */
+.dark-mode .contact-item {
+  color: var(--text-muted);
 }
 
 .contact-item i {
@@ -96,43 +169,54 @@
   transition: all 0.3s ease;
 }
 
+/* Dark mode social links */
+.dark-mode .social-links a {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
 .social-links a:hover {
   background: var(--primary);
   color: var(--white);
   transform: translateY(-2px);
 }
 
-/* Competencies Card */
-.competencies-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+/* Dark mode social links hover */
+.dark-mode .social-links a:hover {
+  background: var(--primary);
+  color: var(--bg-primary);
 }
 
-.competencies-card h3 {
+/* Competencies Card */
+.competencies-card h3,
+.achievements-card h3,
+.summary-card h3,
+.experience-card h3,
+.projects-card h3,
+.education-card h3,
+.languages-card h3 {
   color: var(--primary);
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  border-bottom: 2px solid var(--light-2);
+  padding-bottom: 0.5rem;
+}
+
+/* Dark mode card headings */
+.dark-mode .competencies-card h3,
+.dark-mode .achievements-card h3,
+.dark-mode .summary-card h3,
+.dark-mode .experience-card h3,
+.dark-mode .projects-card h3,
+.dark-mode .education-card h3,
+.dark-mode .languages-card h3 {
+  color: var(--primary-light);
+  border-bottom-color: var(--border-color);
 }
 
 .competency-category {
   margin-bottom: 1.5rem;
-}
-
-.competency-category:last-child {
-  margin-bottom: 0;
-}
-
-.category-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.8rem;
-}
-
-.category-icon {
-  font-size: 1.2rem;
 }
 
 .category-header h4 {
@@ -141,10 +225,27 @@
   margin: 0;
 }
 
+/* Dark mode category headers */
+.dark-mode .category-header h4 {
+  color: var(--text-primary);
+}
+
+.category-description {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+
+/* Dark mode category description */
+.dark-mode .category-description {
+  color: var(--text-muted);
+}
+
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .skill-tag {
@@ -156,20 +257,14 @@
   font-weight: 500;
 }
 
-/* Achievements Card */
-.achievements-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+/* Dark mode skill tags */
+.dark-mode .skill-tag {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
-.achievements-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
+/* Achievements */
 .achievements-list {
   list-style: none;
   padding: 0;
@@ -185,49 +280,57 @@
   color: var(--dark-2);
 }
 
-.achievements-list li i {
-  color: var(--accent);
-  margin-top: 0.2rem;
+/* Dark mode achievements */
+.dark-mode .achievements-list li {
+  color: var(--text-secondary);
 }
 
-/* Main Content Cards */
-.summary-card,
-.experience-card,
-.projects-card,
-.education-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.summary-card h3,
-.experience-card h3,
-.projects-card h3,
-.education-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  border-bottom: 2px solid var(--light-2);
-  padding-bottom: 0.5rem;
-}
-
-.summary-card p {
+/* Summary Text */
+.summary-text {
   line-height: 1.7;
   color: var(--dark-2);
+  margin-bottom: 1rem;
+}
+
+/* Dark mode summary text */
+.dark-mode .summary-text {
+  color: var(--text-secondary);
+}
+
+.summary-highlights {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.highlight-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Dark mode highlights */
+.dark-mode .highlight-number {
+  color: var(--primary-light);
+}
+
+.dark-mode .highlight-label {
+  color: var(--text-muted);
 }
 
 /* Experience Section */
 .experience-item {
   margin-bottom: 2rem;
-}
-
-.experience-item:last-child {
-  margin-bottom: 0;
-}
-
-.experience-header {
-  margin-bottom: 1rem;
 }
 
 .experience-header h4 {
@@ -236,17 +339,28 @@
   margin-bottom: 0.3rem;
 }
 
+/* Dark mode experience headers */
+.dark-mode .experience-header h4 {
+  color: var(--text-primary);
+}
+
 .experience-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .company {
   color: var(--primary);
   font-weight: 600;
+}
+
+/* Dark mode company */
+.dark-mode .company {
+  color: var(--primary-light);
 }
 
 .period {
@@ -258,6 +372,32 @@
   font-weight: 500;
 }
 
+.achievement-detail {
+  margin-bottom: 1rem;
+}
+
+.achievement-detail h5 {
+  font-size: 0.95rem;
+  color: var(--dark);
+  margin-bottom: 0.3rem;
+}
+
+/* Dark mode achievement headers */
+.dark-mode .achievement-detail h5 {
+  color: var(--text-primary);
+}
+
+.achievement-detail p {
+  color: var(--dark-2);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Dark mode achievement text */
+.dark-mode .achievement-detail p {
+  color: var(--text-secondary);
+}
+
 /* Projects Section */
 .project-item {
   margin-bottom: 2rem;
@@ -265,23 +405,63 @@
   border-bottom: 1px solid var(--light-2);
 }
 
-.project-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
+/* Dark mode project border */
+.dark-mode .project-item {
+  border-bottom-color: var(--border-color);
 }
 
-.project-item h4 {
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-header h4 {
   font-size: 1.1rem;
   color: var(--dark);
-  margin-bottom: 0.5rem;
 }
 
-.project-technologies {
-  margin-bottom: 0.8rem;
+/* Dark mode project headers */
+.dark-mode .project-header h4 {
+  color: var(--text-primary);
 }
 
-.project-technologies span {
+.project-role {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Dark mode project role */
+.dark-mode .project-role {
+  color: var(--primary-light);
+}
+
+.project-period {
+  font-size: 0.85rem;
+  color: var(--gray);
+  background: var(--light-2);
+  padding: 0.2rem 0.8rem;
+  border-radius: 15px;
+}
+
+/* Dark mode project period */
+.dark-mode .project-period {
+  background: var(--bg-primary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-badge {
   background: var(--primary);
   color: var(--white);
   padding: 0.3rem 0.8rem;
@@ -290,19 +470,33 @@
   font-weight: 500;
 }
 
-.project-description {
-  color: var(--dark-2);
-  margin-bottom: 0.8rem;
-  line-height: 1.6;
+/* Dark mode tech badges */
+.dark-mode .tech-badge {
+  background: var(--primary-dark);
+  color: var(--text-primary);
 }
 
-.project-achievements {
+.project-section {
+  margin-bottom: 1rem;
+}
+
+.project-section h5 {
+  font-size: 0.95rem;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+/* Dark mode section headers */
+.dark-mode .project-section h5 {
+  color: var(--text-primary);
+}
+
+.project-section ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding-left: 0;
 }
 
-.project-achievements li {
+.project-section li {
   position: relative;
   padding-left: 1.2rem;
   margin-bottom: 0.5rem;
@@ -310,12 +504,33 @@
   font-size: 0.9rem;
 }
 
-.project-achievements li::before {
+/* Dark mode list items */
+.dark-mode .project-section li {
+  color: var(--text-secondary);
+}
+
+.project-section li::before {
   content: '•';
   color: var(--accent);
   font-weight: bold;
   position: absolute;
   left: 0;
+}
+
+.project-impact {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: var(--light-2);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--dark-2);
+}
+
+/* Dark mode project impact */
+.dark-mode .project-impact {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
 }
 
 /* Education Section */
@@ -325,12 +540,18 @@
   margin-bottom: 0.3rem;
 }
 
+/* Dark mode education headers */
+.dark-mode .education-item h4 {
+  color: var(--text-primary);
+}
+
 .education-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .institution {
@@ -338,7 +559,93 @@
   font-weight: 600;
 }
 
+/* Dark mode institution */
+.dark-mode .institution {
+  color: var(--primary-light);
+}
+
+.location {
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+/* Dark mode location */
+.dark-mode .location {
+  color: var(--text-muted);
+}
+
+.education-achievements {
+  list-style: none;
+  padding-left: 0;
+}
+
+.education-achievements li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-2);
+  font-size: 0.9rem;
+}
+
+/* Dark mode education achievements */
+.dark-mode .education-achievements li {
+  color: var(--text-secondary);
+}
+
+.education-achievements li::before {
+  content: '•';
+  color: var(--accent);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Languages Card */
+.language-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--light-2);
+}
+
+/* Dark mode language items */
+.dark-mode .language-item {
+  border-bottom-color: var(--border-color);
+}
+
+.language-name {
+  font-weight: 500;
+  color: var(--dark);
+}
+
+/* Dark mode language name */
+.dark-mode .language-name {
+  color: var(--text-primary);
+}
+
+.language-level {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* Dark mode language level */
+.dark-mode .language-level {
+  color: var(--text-muted);
+}
+
 /* Download Button */
+.download-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 .download-btn {
   display: inline-flex;
   align-items: center;
@@ -349,15 +656,31 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  margin-top: 1rem;
-  align-self: flex-start;
   box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
   transition: all 0.3s ease;
+}
+
+/* Dark mode download button */
+.dark-mode .download-btn {
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .download-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.download-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Dark mode download note */
+.dark-mode .download-note {
+  color: var(--text-muted);
 }
 
 /* Responsive Design */
@@ -389,6 +712,11 @@
     width: 100%;
     justify-content: center;
   }
+  
+  /* Dark mode responsive */
+  .dark-mode .resume-layout {
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -398,7 +726,8 @@
   .summary-card,
   .experience-card,
   .projects-card,
-  .education-card {
+  .education-card,
+  .languages-card {
     padding: 1.5rem;
   }
   
@@ -409,6 +738,11 @@
   
   .social-links {
     grid-template-columns: 1fr;
+  }
+  
+  .summary-highlights {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 
