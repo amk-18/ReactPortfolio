@@ -1,70 +1,266 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ambika Prasad Parida - Full Stack Developer Portfolio
 
-## Available Scripts
+A modern, responsive portfolio website built with React to showcase professional experience, skills, projects, and achievements.
+🚀 Live Demo
+
+View Portfolio
+
+✨ Features
+
+    Responsive Design - Optimized for all devices (mobile, tablet, desktop)
+
+    Dark Mode Toggle - Seamless switching between light and dark themes
+
+    Interactive UI - Smooth animations with Framer Motion
+
+    Particle Effects - Subtle background animations
+
+    Project Showcase - Categorized professional and personal projects
+
+    Skills Visualization - Progress bars for technical skills
+
+    Testimonials - Client and colleague recommendations
+
+    Contact Form - Integrated with Formspree
+
+    Cookie Consent - GDPR compliant cookie banner
+
+    PDF Resume Download - One-click resume download
+
+    SEO Optimized - Meta tags for better search visibility
+
+🛠️ Technologies Used
+Frontend
+
+    React 18 - UI library
+
+    React DOM - DOM rendering
+
+    Framer Motion - Animations
+
+    AOS - Scroll animations
+
+    Boxicons - Icon library
+
+Styling
+
+    CSS3 - Custom styles with CSS variables
+
+    Google Fonts - Poppins font family
+
+    Responsive Design - Mobile-first approach
+
+Build Tools
+
+    React Scripts - Build and development
+
+    ESLint - Code linting
+
+    Netlify - Hosting and deployment
+
+External Services
+
+    Formspree - Contact form handling
+
+    Google Analytics - Visitor tracking (optional)
+
+    Particles.js - Background effects
+
+📁 Project Structure
+text
+
+ambika-portfolio/
+├── public/
+│   ├── assets/
+│   │   ├── img/          # Profile and project images
+│   │   └── pdf/          # Resume PDF
+│   ├── index.html
+│   └── manifest.json
+├── src/
+│   ├── components/
+│   │   ├── About/
+│   │   ├── Achievements/
+│   │   ├── Analytics/
+│   │   ├── Contact/
+│   │   ├── CookieConsent/
+│   │   ├── DarkModeToggle/
+│   │   ├── Footer/
+│   │   ├── Header/
+│   │   ├── Hero/
+│   │   ├── Process/
+│   │   ├── Projects/
+│   │   ├── Resume/
+│   │   ├── Skills/
+│   │   └── Testimonials/
+│   ├── context/
+│   │   └── DarkModeContext.js
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   └── index.css
+├── .env
+├── netlify.toml
+├── package.json
+└── README.md
+
+🚦 Getting Started
+Prerequisites
+
+    Node.js (v14 or higher)
+
+    npm or yarn
+
+Installation
+
+    Clone the repository
+
+bash
+
+git clone https://github.com/amk-18/ambika-portfolio.git
+cd ambika-portfolio
+
+    Install dependencies
+
+bash
+
+npm install
+# or
+yarn install
+
+    Start the development server
+
+bash
+
+npm start
+# or
+yarn start
+
+    Open http://localhost:3000 to view it in your browser
+
+📜 Available Scripts
 
 In the project directory, you can run:
+npm start
 
-### `npm start`
+Runs the app in development mode.
+Open http://localhost:3000 to view it in your browser.
+npm test
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Launches the test runner in interactive watch mode.
+npm run build
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for best performance.
+npm run eject
 
-### `npm test`
+Note: this is a one-way operation. Once you eject, you can't go back!
+🌙 Dark Mode
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The portfolio includes a fully implemented dark mode feature:
 
-### `npm run build`
+    Toggle button in the header with sun/moon icons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Persists user preference in localStorage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Respects system dark mode preference on first visit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Smooth CSS transitions between themes
 
-### `npm run eject`
+    All components adapt with dark mode styles
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+📱 Mobile Responsiveness
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Fully optimized for mobile devices:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    Hamburger menu for navigation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Touch-friendly buttons (44px minimum tap target)
 
-## Learn More
+    Responsive typography using clamp()
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    Flexible grid layouts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Optimized images for different screen sizes
 
-### Code Splitting
+    Viewport meta tag for proper scaling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🚀 Deployment
 
-### Analyzing the Bundle Size
+The site is configured for easy deployment on Netlify:
+Netlify Configuration (netlify.toml)
+toml
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[build]
+  command = "npm run build"
+  publish = "build"
 
-### Making a Progressive Web App
+[build.environment]
+  CI = "false"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Environment Variables
 
-### Advanced Configuration
+Create a .env file for local development:
+text
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+CI=false
 
-### Deployment
+Deploy to Netlify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    Push code to GitHub
 
-### `npm run build` fails to minify
+    Connect repository to Netlify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Netlify automatically detects build settings
+
+    Site deploys with every push to main branch
+
+🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+    Fork the repository
+
+    Create your feature branch (git checkout -b feature/AmazingFeature)
+
+    Commit your changes (git commit -m 'Add some AmazingFeature')
+
+    Push to the branch (git push origin feature/AmazingFeature)
+
+    Open a Pull Request
+
+📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+👨‍💻 Author
+
+Ambika Prasad Parida
+
+    Role: Full Stack Developer
+
+    Experience: 3+ years
+
+    Specialization: Java, Spring Boot, Microservices, AWS
+
+📞 Contact Information
+
+    Email: ambikaparida08@gmail.com
+
+    Phone: +91 7327838578
+
+    LinkedIn: Ambika Prasad Parida
+
+    GitHub: @amk-18
+
+    HackerRank: @ambikaparida08
+
+    WhatsApp: +91 7327838578
+
+    Portfolio: portfolio.parida.in
+
+🏢 Current Position
+
+Software Engineer at Ikontel Solutions Pvt. Ltd., Bangalore
+🎓 Education
+
+B.Tech - Gandhi Engineering College, Bhubaneswar (2017-2021)
