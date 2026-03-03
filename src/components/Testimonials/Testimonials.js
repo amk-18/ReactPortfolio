@@ -16,7 +16,7 @@ const Testimonials = () => {
       name: "Debashis Behera",
       position: "Leader in Banking Innovation",
       image: "/assets/img/debasis2.jpeg",
-      linkedin: "https://www.linkedin.com/in/debashis-behera-08526127/",
+      linkedin: "https://www.linkedin.com/in/debasish-b-08526127/",
       content: "Ambika is technically very strong. He clearly understands our customers requirements and work accordingly to fulfil that on time. his dedication towards work is unparalleled. He was one of the best technical resources in our team. I strongly recommend him for software product engineering. I wish him all the best for his future endeavours."
     }
   ];
